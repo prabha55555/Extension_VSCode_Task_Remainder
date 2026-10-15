@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 300" width="120" height="300">
+  <!-- Placeholder buddy. Replace by dropping a transparent character.png next to index.html -->
+  <ellipse cx="60" cy="292" rx="34" ry="6" fill="#000" opacity=".25"/>
+  <rect x="38" y="190" width="18" height="96" rx="8" fill="#2b3a67"/>
+  <rect x="64" y="190" width="18" height="96" rx="8" fill="#2b3a67"/>
+  <rect x="26" y="96" width="68" height="110" rx="22" fill="#e53935"/>
+  <rect x="10" y="104" width="18" height="78" rx="9" fill="#e53935"/>
+  <rect x="92" y="104" width="18" height="78" rx="9" fill="#e53935"/>
+  <circle cx="19" cy="186" r="9" fill="#f1c27d"/>
+  <circle cx="101" cy="186" r="9" fill="#f1c27d"/>
+  <circle cx="60" cy="58" r="36" fill="#f1c27d"/>
+  <path d="M24 52 Q60 6 96 52 Q84 30 60 30 Q36 30 24 52Z" fill="#2a1d14"/>
+  <circle cx="47" cy="60" r="4" fill="#2a1d14"/>
+  <circle cx="73" cy="60" r="4" fill="#2a1d14"/>
+  <path d="M46 76 Q60 90 74 76" stroke="#2a1d14" stroke-width="4" fill="none" stroke-linecap="round"/>
+</svg>

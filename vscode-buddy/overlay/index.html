@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8">
+<title>Desk Buddy</title>
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; background: transparent; overflow: hidden; user-select: none;
+    font-family: "Segoe UI", system-ui, sans-serif; font-size: 13px; }
+  .stage { position: absolute; inset: 0; }
+  .stage canvas { display: block; }
+  .bubble {
+    position: absolute; left: 70px; right: 70px; top: 10px; z-index: 3;
+    background: #fff8d6; color: #3b3420; border-radius: 16px; padding: 12px 14px;
+    box-shadow: 0 8px 22px rgba(0, 0, 0, .4), 0 0 0 2px var(--accent, transparent), 0 0 24px color-mix(in srgb, var(--accent, #fff) 55%, transparent);
+    animation: bubbleIn .75s cubic-bezier(.2, .9, .3, 1.15) .45s both;
+  }
+  .bubble::after {
+    content: ""; position: absolute; left: 50%; bottom: -8px; transform: translateX(-50%);
+    border: 9px solid transparent; border-top-color: #fff8d6; border-bottom: 0;
+  }
+  .hidden { display: none !important; }
+  .text { font-size: 14px; line-height: 1.4; min-height: 1.4em; }
+  .actions { display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap; align-items: center;
+    opacity: 0; transform: translateY(6px); pointer-events: none; transition: opacity .3s, transform .3s; }
+  .actions.show { opacity: 1; transform: none; pointer-events: auto; }
+  button, select { font: inherit; cursor: pointer; border: 0; border-radius: 999px; padding: 5px 14px; }
+  .primary { background: #1a73e8; color: #fff; font-weight: 600; }
+  .secondary { background: #e8e1c0; color: #4a4330; padding-right: 8px; }
+  select { background: #e8e1c0; color: #4a4330; padding: 5px 6px; margin-left: -6px; }
+  @keyframes bubbleIn {
+    from { transform: translateX(-130%) rotate(-8deg) scale(.7); opacity: 0; filter: blur(6px); }
+    55%  { transform: translateX(5%) rotate(1.5deg) scale(1.04); opacity: 1; filter: blur(0); }
+    80%  { transform: translateX(-1.5%) rotate(-.5deg) scale(.99); }
+    to   { transform: none; opacity: 1; }
+  }
+  @media (prefers-reduced-motion: reduce) { .bubble { animation: none; } .actions { transition: none; } }
+</style></head>
+<body><div id="app"></div>
+<script src="../media/overlay.js"></script>
+</body></html>

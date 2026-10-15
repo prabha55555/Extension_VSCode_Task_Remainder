@@ -1,0 +1,55 @@
+{
+  "name": "desk-buddy",
+  "displayName": "Desk Buddy",
+  "description": "A 3D character inside VS Code that reminds you to drink water and finish your tasks.",
+  "version": "0.1.0",
+  "publisher": "local",
+  "private": true,
+  "engines": { "vscode": "^1.85.0" },
+  "categories": ["Other"],
+  "main": "./src/extension.js",
+  "extensionKind": ["ui"],
+  "activationEvents": ["onStartupFinished"],
+  "contributes": {
+    "viewsContainers": {
+      "activitybar": [
+        { "id": "deskBuddy", "title": "Desk Buddy", "icon": "media/icon.svg" }
+      ]
+    },
+    "views": {
+      "deskBuddy": [
+        { "type": "webview", "id": "deskBuddy.view", "name": "Buddy" }
+      ]
+    },
+    "commands": [
+      { "command": "deskBuddy.openInEditor", "title": "Open Buddy Beside Editor", "category": "Desk Buddy" },
+      { "command": "deskBuddy.uploadCharacter", "title": "Upload Character (.glb or image)", "category": "Desk Buddy" },
+      { "command": "deskBuddy.testReminder", "title": "Test Reminder Now", "category": "Desk Buddy" },
+      { "command": "deskBuddy.toggleMute", "title": "Mute / Unmute Reminders", "category": "Desk Buddy" },
+      { "command": "deskBuddy.openSettings", "title": "Open Settings", "category": "Desk Buddy" }
+    ],
+    "configuration": {
+      "title": "Desk Buddy",
+      "properties": {
+        "deskBuddy.userName": { "type": "string", "default": "", "description": "Name the character uses when talking to you." },
+        "deskBuddy.waterEveryMinutes": { "type": "number", "default": 0, "minimum": 0, "description": "Minutes between water reminders. 0 (the default) turns them off, so only your own tasks pop up." },
+        "deskBuddy.snoozeMinutes": { "type": "number", "default": 10, "minimum": 1, "description": "How long 'Remind me later' waits." },
+        "deskBuddy.autoReveal": { "type": "boolean", "default": true, "description": "Open the Desk Buddy view automatically when a reminder is due. If off (or if it can't open), a normal VS Code notification is used." },
+        "deskBuddy.display": { "type": "string", "enum": ["overlay", "sidebar"], "default": "overlay", "description": "overlay: the character appears on its own at the left edge of your screen and nothing opens in VS Code (needs Electron). sidebar: reminders open the Desk Buddy side bar." },
+        "deskBuddy.overlayElectronPath": { "type": "string", "default": "", "description": "Path to electron.exe used for the overlay. Leave empty to detect one in your workspace's node_modules or a global npm install." },
+        "deskBuddy.closeAfterAnswer": { "type": "boolean", "default": true, "description": "Close the side bar again after you answer a reminder that opened it, so the character just visits and leaves." },
+        "deskBuddy.sound": { "type": "boolean", "default": true, "description": "Play a soft chime with each reminder." }
+      }
+    }
+  },
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "test": "node test/scheduler.test.js && node test/extension.test.js",
+    "package": "npm run build && vsce package --allow-missing-repository --skip-license"
+  },
+  "devDependencies": {
+    "@vscode/vsce": "^3.0.0",
+    "esbuild": "^0.24.0",
+    "three": "^0.160.0"
+  }
+}

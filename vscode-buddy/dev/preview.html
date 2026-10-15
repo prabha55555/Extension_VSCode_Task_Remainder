@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8">
+<title>Desk Buddy preview (mocked VS Code)</title>
+<style>
+  :root {
+    --vscode-foreground:#cccccc; --vscode-font-family:"Segoe UI",sans-serif; --vscode-font-size:13px;
+    --vscode-sideBar-background:#181818; --vscode-editor-background:#1f1f1f; --vscode-panel-border:#2b2b2b;
+    --vscode-input-background:#313131; --vscode-input-foreground:#ccc; --vscode-input-border:#3c3c3c;
+    --vscode-button-background:#0078d4; --vscode-button-foreground:#fff; --vscode-button-hoverBackground:#026ec1;
+    --vscode-focusBorder:#0078d4; --vscode-textLink-foreground:#4daafc; --vscode-toolbar-hoverBackground:#5a5d5e50;
+  }
+  body { margin: 0; background: #1e1e1e; }
+  #frame { width: 320px; margin: 0 auto; height: 100vh; border-inline: 1px solid #333; overflow: auto; }
+</style>
+<link rel="stylesheet" href="../media/webview.css">
+</head><body>
+<div id="frame"><div id="app"></div></div>
+<script src="mock.js"></script>
+<script src="../media/webview.js"></script>
+</body></html>

@@ -1,0 +1,12 @@
+{
+  "name": "desk-buddy",
+  "version": "1.0.0",
+  "description": "Desktop buddy that pops up over VS Code with water and task reminders",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "devDependencies": {
+    "electron": "^33.0.0"
+  }
+}

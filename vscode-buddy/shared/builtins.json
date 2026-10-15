@@ -1,0 +1,7 @@
+[
+  { "id": "bolt",   "name": "Bolt the Robot",   "emoji": "🤖" },
+  { "id": "mochi",  "name": "Mochi the Cat",    "emoji": "🐱" },
+  { "id": "astro",  "name": "Astro",            "emoji": "🧑‍🚀" },
+  { "id": "waddle", "name": "Waddle the Penguin", "emoji": "🐧" },
+  { "id": "bloop",  "name": "Bloop the Droplet", "emoji": "💧" }
+]

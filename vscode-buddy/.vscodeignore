@@ -1,0 +1,9 @@
+node_modules/**
+webview/**
+scripts/**
+dev/**
+test/**
+**/*.map
+*.vsix
+package-lock.json
+overlay/renderer.js

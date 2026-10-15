@@ -1,0 +1,5 @@
+[
+  { "id": "standup", "time": "10:00", "text": "Daily standup call in 5 minutes", "days": ["Mon","Tue","Wed","Thu","Fri"] },
+  { "id": "lunch",   "time": "13:30", "text": "Lunch break! Step away from the screen" },
+  { "id": "pr",      "time": "16:30", "text": "Push the flow-update branch and raise the PR", "date": "2026-10-15" }
+]

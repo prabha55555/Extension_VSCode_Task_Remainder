@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+  
+  html, body {
+    margin: 0; height: 100%;
+    background: transparent;
+    overflow: hidden;
+    font-family: "Segoe UI", system-ui, sans-serif;
+    user-select: none;
+  }
+  .stage {
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column; align-items: center; justify-content: flex-end;
+    transform: translateY(110%);
+    transition: transform .45s cubic-bezier(.2,.9,.3,1.2);
+  }
+  .stage.in { transform: translateY(0); }
+
+  .bubble {
+    position: relative;
+    background: #fff8d6;
+    color: #3b3420;
+    border-radius: 14px;
+    padding: 12px 14px;
+    margin-bottom: 10px;
+    box-shadow: 0 6px 18px rgba(0,0,0,.35);
+    font-size: 14px;
+    max-width: 280px;
+  }
+  .bubble::after {               /* speech-bubble tail */
+    content: ""; position: absolute; left: 50%; bottom: -9px;
+    transform: translateX(-50%);
+    border: 10px solid transparent; border-top-color: #fff8d6; border-bottom: 0;
+  }
+  .actions { display: flex; gap: 8px; margin-top: 10px; }
+  button {
+    border: 0; border-radius: 999px; padding: 6px 16px;
+    font: inherit; font-size: 13px; cursor: pointer;
+  }
+  .yes { background: #1a73e8; color: #fff; font-weight: 600; }
+  .later { background: #e8e1c0; color: #4a4330; }
+  button:focus-visible { outline: 2px solid #1a73e8; outline-offset: 2px; }
+
+  .character {
+    height: 300px;
+    filter: drop-shadow(0 8px 10px rgba(0,0,0,.4));
+    animation: bob 2.4s ease-in-out infinite;
+  }
+  @keyframes bob { 50% { transform: translateY(-4px); } }
+  @media (prefers-reduced-motion: reduce) {
+    .stage { transition: none; } .character { animation: none; }
+  }
+</style>
+</head>
+<body>
+  <div class="stage" id="stage">
+    <div class="bubble hit">
+      <span id="msg"></span>
+      <div class="actions">
+        <button class="yes" id="yes"></button>
+        <button class="later" id="later"></button>
+      </div>
+    </div>
+    <!-- Put your transparent-background PNG/GIF next to this file -->
+    <img class="character hit" src="character.png" alt=""
+         onerror="this.onerror=null; this.src='character.svg'">
+  </div>
+
+<script>
+  const stage = document.getElementById('stage');
+
+  // Only the bubble and character catch clicks; empty space passes clicks to VS Code
+  document.querySelectorAll('.hit').forEach(el => {
+    el.addEventListener('mouseenter', () => buddy.setClickable(true));
+    el.addEventListener('mouseleave', () => buddy.setClickable(false));
+  });
+
+  const msg = document.getElementById('msg');
+  const yes = document.getElementById('yes');
+  const later = document.getElementById('later');
+
+  yes.onclick = () => buddy.done();
+  later.onclick = () => buddy.snooze();
+
+  buddy.onShow((reminder) => {
+    msg.textContent = reminder.text;
+    if (reminder.type === 'water') {
+      yes.textContent = 'Yes';
+      later.textContent = 'Remind me later';
+    } else {
+      yes.textContent = 'Done';
+      later.textContent = 'Snooze 10 min';
+    }
+    stage.classList.add('in');
+    // Optional sound: new Audio('ding.mp3').play();
+  });
+  buddy.onHide(() => {
+    stage.classList.remove('in');
+    buddy.setClickable(false);
+  });
+</script>
+</body>
+</html>
